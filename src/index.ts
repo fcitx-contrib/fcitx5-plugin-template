@@ -2,7 +2,7 @@ const id = 'google-doodle'
 
 function load() {
   if (!window.curl) {
-    window.fcitxLog('curl permission is not granted.')
+    window.fcitx.log('curl permission is not granted.')
     return
   }
 
@@ -12,7 +12,7 @@ function load() {
     el.innerHTML = html
     const src = (<HTMLImageElement | null>el.querySelector('.doodle-card-img img'))?.src
     if (!src) {
-      window.fcitxLog('No doodle found.')
+      window.fcitx.log('No doodle found.')
       return
     }
 
@@ -31,7 +31,7 @@ function unload() {
   document.head.querySelector(`#${id}`)?.remove()
 }
 
-window.pluginManager.register({
+window.fcitx.pluginManager.register({
   load,
   unload,
 })

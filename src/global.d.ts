@@ -35,25 +35,27 @@ declare global {
   }
 
   interface Window {
-    // APIs that can be hooked.
-    setCandidates: (cands: Candidate[], highlighted: number, markText: string, pageable: boolean, hasPrev: boolean, hasNext: boolean, scrollState: SCROLL_STATE, scrollStart: boolean, scrollEnd: boolean) => void
-    setLayout: (layout: 0 | 1) => void
-    updateInputPanel: (preeditHTML: string, auxUpHTML: string, auxDownHTML: string) => void
-    resize: (dx: number, dy: number, dragging: boolean, hasContextmenu: boolean) => void
-    setTheme: (theme: 0 | 1 | 2) => void
-    setAccentColor: (color: number | null) => void
-    setStyle: (style: string) => void
-    setWritingMode: (mode: 0 | 1 | 2) => void
+    fcitx: {
+      // APIs that can be hooked.
+      setCandidates: (cands: Candidate[], highlighted: number, markText: string, pageable: boolean, hasPrev: boolean, hasNext: boolean, scrollState: SCROLL_STATE, scrollStart: boolean, scrollEnd: boolean) => void
+      setLayout: (layout: 0 | 1) => void
+      updateInputPanel: (preeditHTML: string, auxUpHTML: string, auxDownHTML: string) => void
+      resize: (dx: number, dy: number, dragging: boolean, hasContextmenu: boolean) => void
+      setTheme: (theme: 0 | 1 | 2) => void
+      setAccentColor: (color: number | null) => void
+      setStyle: (style: string) => void
+      setWritingMode: (mode: 0 | 1 | 2) => void
+
+      // Log to stderr.
+      log: (...args: unknown[]) => void
+
+      pluginManager: {
+        register: (plugin: FcitxPlugin) => void
+      }
+    }
 
     // No CORS restriction and all headers are customizable.
     curl?: (url: string, args?: CurlArgs) => Promise<CurlResponse>
-
-    // Log to stderr.
-    fcitxLog: (...args: unknown[]) => void
-
-    pluginManager: {
-      register: (plugin: FcitxPlugin) => void
-    }
   }
 }
 
